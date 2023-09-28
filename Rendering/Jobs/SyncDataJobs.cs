@@ -88,7 +88,7 @@ namespace NSprites
                 for (var chunkIndex = startIndex; chunkIndex < toIndex; chunkIndex++)
                 {
                     var chunk = Chunks[chunkIndex];
-                    chunk.WriteFullChunkData(ref ComponentTypeHandle, chunk.GetChunkComponentData(ref PropertyPointerChunk_CTH).From, OutputArray, TypeSize);
+                    chunk.WriteFullChunkData(ref ComponentTypeHandle, chunk.GetChunkComponentData(ref PropertyPointerChunk_CTH).from, OutputArray, TypeSize);
                 }
             }
         }
@@ -116,7 +116,7 @@ namespace NSprites
                     if (!chunk.DidChange(ref ComponentTypeHandle, LastSystemVersion) && !chunk.DidOrderChange(LastSystemVersion))
                         continue;
                     
-                    chunk.WriteFullChunkData(ref ComponentTypeHandle, chunk.GetChunkComponentData(ref PropertyPointerChunk_CTH).From, OutputArray, TypeSize);
+                    chunk.WriteFullChunkData(ref ComponentTypeHandle, chunk.GetChunkComponentData(ref PropertyPointerChunk_CTH).from, OutputArray, TypeSize);
                 }
             }
         }
@@ -139,7 +139,7 @@ namespace NSprites
                 for (var i = startIndex; i < toIndex; i++)
                 {
                     var chunk = Chunks[ChunkIndexes[i]];
-                    chunk.WriteFullChunkData(ref ComponentTypeHandle, chunk.GetChunkComponentData(ref PropertyPointerChunk_CTH).From, OutputArray, TypeSize);
+                    chunk.WriteFullChunkData(ref ComponentTypeHandle, chunk.GetChunkComponentData(ref PropertyPointerChunk_CTH).from, OutputArray, TypeSize);
                 }
             }
         }

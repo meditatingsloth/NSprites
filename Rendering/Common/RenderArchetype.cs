@@ -156,7 +156,7 @@ namespace NSprites
 #if !NSPRITES_REACTIVE_DISABLE || !NSPRITES_STATIC_DISABLE
         public JobHandle LoadAllChunkData(in NativeArray<ArchetypeChunk> chunks, in ComponentTypeHandle<PropertyPointerChunk> propertyPointerChunk_CTH, in DynamicComponentTypeHandle componentTypeHandle, in int writeCount, in JobHandle inputDeps)
         {
-            return new SyncPropertyByChunkJob
+            return new SyncDataJobs.SyncPropertyByChunkJob
             {
                 Chunks = chunks,
                 ComponentTypeHandle = componentTypeHandle,
@@ -167,7 +167,7 @@ namespace NSprites
         }
         public JobHandle UpdateOnChangeChunkData(in NativeArray<ArchetypeChunk> chunks, in ComponentTypeHandle<PropertyPointerChunk> propertyPointerChunk_CTH, in DynamicComponentTypeHandle componentTypeHandle, in int writeCount, in uint lastSystemVersion, in JobHandle inputDeps)
         {
-            return new SyncPropertyByChangedChunkJob
+            return new SyncDataJobs.SyncPropertyByChangedChunkJob
             {
                 Chunks = chunks,
                 ComponentTypeHandle = componentTypeHandle,
@@ -190,7 +190,7 @@ namespace NSprites
         private JobHandle UpdateListedChunkData(in NativeArray<ArchetypeChunk> chunks, in NativeArray<byte> writeArray, in NativeList<int> chunkIndexes, in ComponentTypeHandle<PropertyPointerChunk> propertyPointerChunk_CTH, in DynamicComponentTypeHandle componentTypeHandle, in JobHandle inputDeps)
         {
             return chunkIndexes.Length > 0
-                ? new SyncPropertyByListedChunkJob
+                ? new SyncDataJobs.SyncPropertyByListedChunkJob
                 {
                     Chunks = chunks,
                     ChunkIndexes = chunkIndexes,
@@ -204,7 +204,7 @@ namespace NSprites
 #endif
         public JobHandle LoadAllQueryData(in EntityQuery query, in DynamicComponentTypeHandle componentTypeHandle, in int writeCount, in JobHandle inputDeps)
         {
-            var updatePropertyJob = new SyncPropertyByQueryJob
+            var updatePropertyJob = new SyncDataJobs.SyncPropertyByQueryJob
             {
                 ComponentTypeHandle = componentTypeHandle,
                 ChunkBaseEntityIndices = query.CalculateBaseEntityIndexArrayAsync(Allocator.TempJob, default, out var calculateChunkBaseIndices),
